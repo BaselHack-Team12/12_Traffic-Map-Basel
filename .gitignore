@@ -3,5 +3,4 @@
 *.iml
 out
 gen
-backend/src/test/
-backend/target/
+target/

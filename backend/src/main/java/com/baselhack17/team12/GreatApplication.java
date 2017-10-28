@@ -1,11 +1,11 @@
 package com.baselhack17.team12;
 
-/**
- * //TODO write here something nicer
- */
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+/**
+ * //TODO write here something nicer
+ */
 @SpringBootApplication
 public class GreatApplication {
 
