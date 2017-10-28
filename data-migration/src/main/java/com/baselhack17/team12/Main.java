@@ -14,75 +14,50 @@
  */
 package com.baselhack17.team12;
 
-import com.google.common.collect.Lists;
-import com.google.common.io.Resources;
+import static com.google.common.collect.Lists.newArrayList;
+
+import java.io.File;
+import java.sql.Date;
+import java.util.List;
+
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.LineIterator;
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 
-import java.io.File;
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
-import static com.google.common.collect.Lists.newArrayList;
-
 
 public class Main {
 
+    private static int carCount = 0;
+    private static int streetCount = -1;
+    private static String lastStreetName = "";
+
     public static void main(String[] args) {
+        HibernateUtils hibernateUtils = new HibernateUtils();
 
-        List<Streets> streets = new ArrayList<Streets>();
-        List<Cars> cars = new ArrayList<Cars>();
+        String directoryPath = "/Users/ilgun/BaselHack2017/BaselHack/radardaten";
+        File directory = new File(directoryPath);
 
+        String[] extensions = new String[]{"txt"};
 
-        //String directoryPath = args[0];
-        //File directory = new File(directoryPath);
-
-        String[] extensions = new String[]{
-                "txt"
-        };
-
-        //List<File> files = newArrayList(FileUtils.iterateFiles(directory, extensions, true));
-
-        List<File> files = new ArrayList();
-        try {
-            files.add(new File(Resources.getResource("test.txt").toURI()));
-        } catch (Exception ex) {
-
-        }
+        List<File> files = newArrayList(FileUtils.iterateFiles(directory, extensions, true));
 
         for (File file : files) {
             try {
                 List<String> lines = FileUtils.readLines(file);
 
-                String streetname = lines.get(2);
-                streetname = StringUtils.substringAfterLast(streetname, " ");
-                if (streetname.contains("-")) {
-                    streetname = StringUtils.substringAfter(streetname, "-");
-                }
-                System.out.println(streetname);
-                Streets street = new Streets();
-                street.setStreetName(streetname);
+                String streetName = lines.get(2);
+                streetName = streetName.toLowerCase();
 
-                if(HibernateUtils.isStreetExists(Streets.class, street.getStreetName())) {
-                    System.out.println("test");
+                streetName = StringUtils.substringAfterLast(streetName, " ");
+                if (streetName.contains("-")) {
+                    streetName = StringUtils.substringAfter(streetName, "-");
                 }
 
-                boolean found = false;
-                for (Streets s : streets) {
-                    if (s.getStreetName().equals(streetname)) {
-                        street = s;
-                        found = true;
-                    }
+                if (!lastStreetName.equals(streetName)) {
+                    ++streetCount;
                 }
-                if (!found) {
-                    streets.add(street);
-                }
+                int streetId = hibernateUtils.getOrCreateStreet(streetName, streetCount);
 
                 lines = lines.subList(6, lines.size() - 1);
                 for (String line : lines) {
@@ -101,21 +76,19 @@ public class Main {
 
                     Double length = Double.parseDouble(values[4]);
 
-                    Cars car = new Cars();
+                    cars car = new cars();
+                    car.setId(carCount++);
                     car.setSpeed(speed);
                     car.setSize(length);
-                    car.setTimeStamp(new java.sql.Date(timestamp.toDate().getTime()));
-                    car.setStreetId(street.getId());
+                    car.setTimeStamp(new Date(timestamp.toDate().getTime()));
+                    car.setStreetId(streetId);
 
-                    cars.add(car);
-                    //Persist car
-
+                    System.out.println("Car Id: " + car.getId() + "streetId: " + car.getStreetId());
+                    hibernateUtils.persist(car);
                 }
-
-            } catch (IOException ex) {
+            } catch (Exception ex) {
                 System.out.println("Failed for file " + file.getName() + ": " + ex.getMessage());
-            }
-            finally {
+            } finally {
                 System.out.println("Done.");
             }
         }

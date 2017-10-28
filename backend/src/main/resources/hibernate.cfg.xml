@@ -9,7 +9,7 @@
     <property name="connection.username">baselhack</property>
     <property name="connection.password">baselhack</property>
     <property name="hbm2ddl.auto">update</property>
-    <mapping class="com.baselhack17.team12.Cars"/>
-    <mapping class="com.baselhack17.team12.Streets"/>
+    <mapping class="com.baselhack17.team12.cars"/>
+    <mapping class="com.baselhack17.team12.streets"/>
   </session-factory>
 </hibernate-configuration>

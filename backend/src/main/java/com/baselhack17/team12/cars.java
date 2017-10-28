@@ -5,27 +5,29 @@ import java.sql.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
 import com.google.common.base.Objects;
 
 /**
- * //TODO write here something nicer.
+ * //TODO write here something nicer
  */
 @Entity
-public class Cars {
+public class cars {
+
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private int streetId;
     private Double speed;
     private Double size;
     private Date timeStamp;
     private Integer direction;
-    private Streets streetsByStreetId;
 
     @Id
-    @Column(name = "id")
+    @Column(name = "id", unique = true)
     public int getId() {
         return id;
     }
@@ -88,10 +90,11 @@ public class Cars {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Cars cars = (Cars) o;
+        cars cars = (cars) o;
         return id == cars.id &&
                 streetId == cars.streetId &&
                 Objects.equal(speed, cars.speed) &&
+                Objects.equal(streetId, cars.streetId) &&
                 Objects.equal(size, cars.size) &&
                 Objects.equal(timeStamp, cars.timeStamp) &&
                 Objects.equal(direction, cars.direction);
@@ -100,15 +103,5 @@ public class Cars {
     @Override
     public int hashCode() {
         return Objects.hashCode(id, streetId, speed, size, timeStamp, direction);
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "streetsByStreetId", referencedColumnName = "id", nullable = false)
-    public Streets getStreetsByStreetId() {
-        return streetsByStreetId;
-    }
-
-    public void setStreetsByStreetId(Streets streetsByStreetId) {
-        this.streetsByStreetId = streetsByStreetId;
     }
 }

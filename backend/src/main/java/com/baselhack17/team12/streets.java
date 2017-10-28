@@ -1,24 +1,23 @@
 package com.baselhack17.team12;
 
-import static com.google.common.base.Objects.equal;
-import static java.lang.Double.compare;
-
-import java.util.Collection;
-
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
 import com.google.common.base.Objects;
 
 /**
- * //TODO write here something nicer.
+ * //TODO write here something nicer
  */
 @Entity
-public class Streets {
+public class streets {
+
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int id;
+
     private String streetName;
     private double longitude;
     private double latitude;
@@ -26,10 +25,9 @@ public class Streets {
     private double speedlimit;
     private Double density;
     private Double dangerId;
-    private Collection<Cars> carsById;
 
     @Id
-    @Column(name = "id")
+    @Column(name = "id", unique = true)
     public int getId() {
         return id;
     }
@@ -112,28 +110,19 @@ public class Streets {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Streets streets = (Streets) o;
+        streets streets = (com.baselhack17.team12.streets) o;
         return id == streets.id &&
-                compare(streets.longitude, longitude) == 0 &&
-                compare(streets.latitude, latitude) == 0 &&
-                compare(streets.speedlimit, speedlimit) == 0 &&
-                equal(streetName, streets.streetName) &&
-                equal(area, streets.area) &&
-                equal(density, streets.density) &&
-                equal(dangerId, streets.dangerId);
+                Double.compare(streets.longitude, longitude) == 0 &&
+                Double.compare(streets.latitude, latitude) == 0 &&
+                Double.compare(streets.speedlimit, speedlimit) == 0 &&
+                Objects.equal(streetName, streets.streetName) &&
+                Objects.equal(area, streets.area) &&
+                Objects.equal(density, streets.density) &&
+                Objects.equal(dangerId, streets.dangerId);
     }
 
     @Override
     public int hashCode() {
         return Objects.hashCode(id, streetName, longitude, latitude, area, speedlimit, density, dangerId);
-    }
-
-    @OneToMany(mappedBy = "streetsByStreetId")
-    public Collection<Cars> getCarsById() {
-        return carsById;
-    }
-
-    public void setCarsById(Collection<Cars> carsById) {
-        this.carsById = carsById;
     }
 }
