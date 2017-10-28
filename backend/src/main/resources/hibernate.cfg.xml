@@ -4,14 +4,12 @@
         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
   <session-factory>
-    <property name="connection.url">jdbc:mysql://localhost:61776/baselhack</property>
+    <property name="connection.url">jdbc:mysql://192.168.5.220:3306/baselhack?serverTimezone=UTC</property>
     <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="connection.username">baselhack</property>
+    <property name="connection.password">baselhack</property>
+    <property name="hbm2ddl.auto">update</property>
     <mapping class="com.baselhack17.team12.Cars"/>
     <mapping class="com.baselhack17.team12.Streets"/>
-    <!-- <property name="connection.username"/> -->
-    <!-- <property name="connection.password"/> -->
-
-    <!-- DB schema will be updated if needed -->
-    <!-- <property name="hbm2ddl.auto">update</property> -->
   </session-factory>
 </hibernate-configuration>

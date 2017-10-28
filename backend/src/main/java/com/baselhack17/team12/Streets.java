@@ -11,6 +11,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.google.common.base.Objects;
+
 /**
  * //TODO write here something nicer.
  */
@@ -123,7 +125,7 @@ public class Streets {
 
     @Override
     public int hashCode() {
-        return com.google.common.base.Objects.hashCode(id, streetName, longitude, latitude, area, speedlimit, density, dangerId);
+        return Objects.hashCode(id, streetName, longitude, latitude, area, speedlimit, density, dangerId);
     }
 
     @OneToMany(mappedBy = "streetsByStreetId")

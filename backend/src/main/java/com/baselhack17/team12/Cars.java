@@ -1,7 +1,5 @@
 package com.baselhack17.team12;
 
-import static com.google.common.base.Objects.equal;
-
 import java.sql.Date;
 
 import javax.persistence.Basic;
@@ -10,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import com.google.common.base.Objects;
 
 /**
  * //TODO write here something nicer.
@@ -91,19 +91,19 @@ public class Cars {
         Cars cars = (Cars) o;
         return id == cars.id &&
                 streetId == cars.streetId &&
-                equal(speed, cars.speed) &&
-                equal(size, cars.size) &&
-                equal(timeStamp, cars.timeStamp) &&
-                equal(direction, cars.direction);
+                Objects.equal(speed, cars.speed) &&
+                Objects.equal(size, cars.size) &&
+                Objects.equal(timeStamp, cars.timeStamp) &&
+                Objects.equal(direction, cars.direction);
     }
 
     @Override
     public int hashCode() {
-        return com.google.common.base.Objects.hashCode(id, streetId, speed, size, timeStamp, direction);
+        return Objects.hashCode(id, streetId, speed, size, timeStamp, direction);
     }
 
     @ManyToOne
-    @JoinColumn(name = "streetId", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "streetsByStreetId", referencedColumnName = "id", nullable = false)
     public Streets getStreetsByStreetId() {
         return streetsByStreetId;
     }

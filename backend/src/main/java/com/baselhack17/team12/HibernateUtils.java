@@ -1,7 +1,5 @@
 package com.baselhack17.team12;
 
-import static com.baselhack17.team12.Main.getSession;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -21,7 +19,7 @@ public class HibernateUtils {
         Session session = sessionFactory.openSession();
 
         return session.createCriteria(clazz)
-                .add(Restrictions.eq("streetname", streetName))
+                .add(Restrictions.eq("streetName", streetName))
                 .setProjection(Projections.rowCount())
                 .uniqueResult() != null;
     }
