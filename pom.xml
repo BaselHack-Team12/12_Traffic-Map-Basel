@@ -20,6 +20,7 @@
 
   <modules>
     <module>backend</module>
+  <module>data-migration</module>
   </modules>
 >>>>>>> d7f3f7299d3ca0a16958e0667f8738236b85a086
 </project>
