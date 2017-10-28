@@ -2,6 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<<<<<<< HEAD
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.baselhack17</groupId>
@@ -9,4 +10,16 @@
     <version>0.1-SNAPSHOT</version>
 
     
+=======
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.baselhack17</groupId>
+  <artifactId>traffic-project-parent</artifactId>
+  <version>0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <modules>
+    <module>backend</module>
+  </modules>
+>>>>>>> d7f3f7299d3ca0a16958e0667f8738236b85a086
 </project>
