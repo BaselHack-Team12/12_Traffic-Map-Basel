@@ -1,3 +1,5 @@
+package com.baselhack17.team12;
+
 import javax.persistence.metamodel.EntityType;
 
 import org.hibernate.HibernateException;
