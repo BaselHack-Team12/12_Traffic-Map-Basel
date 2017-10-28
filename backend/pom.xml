@@ -2,22 +2,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-<<<<<<< HEAD
-    <modelVersion>4.0.0</modelVersion>
+  <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.baselhack17</groupId>
-    <artifactId>traffic-project-backend</artifactId>
-    <version>0.1-SNAPSHOT</version>
-
-    
-=======
   <parent>
     <groupId>com.baselhack17</groupId>
     <artifactId>traffic-project-parent</artifactId>
     <version>0.1-SNAPSHOT</version>
   </parent>
-
-  <modelVersion>4.0.0</modelVersion>
 
   <artifactId>traffic-project-backend</artifactId>
   <version>0.1-SNAPSHOT</version>
@@ -60,15 +51,10 @@
       <version>1.0.0.Final</version>
     </dependency>
     <dependency>
-      <groupId>org.hibernate</groupId>
-      <artifactId>hibernate-core</artifactId>
-      <version>5.2.4.Final</version>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>6.0.6</version>
     </dependency>
-      <dependency>
-          <groupId>mysql</groupId>
-          <artifactId>mysql-connector-java</artifactId>
-          <version>6.0.6</version>
-      </dependency>
   </dependencies>
 
   <build>
@@ -80,6 +66,4 @@
     </plugins>
   </build>
 
-
->>>>>>> d7f3f7299d3ca0a16958e0667f8738236b85a086
 </project>
