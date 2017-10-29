@@ -65,7 +65,6 @@ export class BarchartComponent implements OnInit, OnChanges {
     this.xAxis = svg.append('g')
       .attr('class', 'axis axis-x')
       .attr('transform', `translate(${this.margin.left}, ${this.margin.top + this.height})`)
-      //.call(d3.axisBottom(this.xScale));
       .call(d3.axisBottom(this.xScale));
     this.yAxis = svg.append('g')
       .attr('class', 'axis axis-y')
