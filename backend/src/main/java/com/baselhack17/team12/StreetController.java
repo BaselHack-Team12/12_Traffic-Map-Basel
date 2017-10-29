@@ -18,7 +18,7 @@ public class StreetController {
         return new HibernateUtils().getStreets();
     }
 
-    @RequestMapping(value = "streets/{id}", method=RequestMethod.GET)
+    @RequestMapping(value = "streets/{id}", method = RequestMethod.GET)
     public streets getStreet(@PathVariable("id") int id) {
         return new HibernateUtils().getStreet(id);
     }

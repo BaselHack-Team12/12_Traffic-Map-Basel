@@ -15,7 +15,7 @@ import com.google.common.base.Objects;
 @Entity
 public class streets {
 
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String streetName;

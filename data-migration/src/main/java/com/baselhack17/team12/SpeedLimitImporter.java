@@ -1,7 +1,6 @@
 package com.baselhack17.team12;
 
 import static java.lang.System.exit;
-import static java.lang.System.setOut;
 import static org.json.XML.toJSONObject;
 
 import java.io.InputStream;
@@ -10,7 +9,6 @@ import java.util.Map;
 
 import javax.xml.parsers.ParserConfigurationException;
 
-import com.fasterxml.jackson.core.JsonParser;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpHost;
@@ -19,6 +17,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONObject;
 
+import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectReader;
 

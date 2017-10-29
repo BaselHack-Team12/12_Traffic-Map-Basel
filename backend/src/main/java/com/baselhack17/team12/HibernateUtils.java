@@ -57,8 +57,7 @@ public class HibernateUtils {
             session = sessionFactory.openSession();
             return session.createCriteria(streets.class)
                     .list();
-        }
-        finally {
+        } finally {
             session.close();
         }
     }
@@ -80,12 +79,11 @@ public class HibernateUtils {
         Session session = null;
         try {
             session = sessionFactory.openSession();
-            return (Long)session.createCriteria(cars.class)
+            return (Long) session.createCriteria(cars.class)
                     .setProjection(Projections.rowCount())
                     .add(Restrictions.eq("streetId", streetid))
                     .uniqueResult();
-        }
-        finally {
+        } finally {
             session.close();
         }
     }
@@ -94,11 +92,10 @@ public class HibernateUtils {
         Session session = null;
         try {
             session = sessionFactory.openSession();
-            return (Long)session.createCriteria(cars.class)
+            return (Long) session.createCriteria(cars.class)
                     .setProjection(Projections.rowCount())
                     .uniqueResult();
-        }
-        finally {
+        } finally {
             session.close();
         }
     }
@@ -110,8 +107,7 @@ public class HibernateUtils {
             return (streets) session.createCriteria(streets.class)
                     .add(Restrictions.eq("id", id))
                     .uniqueResult();
-        }
-        finally {
+        } finally {
             session.close();
         }
     }
@@ -131,8 +127,7 @@ public class HibernateUtils {
             session.save(oldstreet);
             session.getTransaction().commit();
             return oldstreet;
-        }
-        finally {
+        } finally {
             session.close();
         }
     }
