@@ -12,6 +12,7 @@ import { ListBlockComponent } from './list-block/list-block.component';
 import { MainPageComponent } from './main-page/main-page.component';
 
 import { MapDataService } from './map-data/map-data.service';
+import { BarchartComponent } from './shared/barchart/barchart.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { MapDataService } from './map-data/map-data.service';
     StreetDetailsComponent,
     MapBlockComponent,
     ListBlockComponent,
-    MainPageComponent
+    MainPageComponent,
+    BarchartComponent
   ],
   imports: [
     BrowserModule,

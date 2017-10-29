@@ -12,7 +12,7 @@ export class MapDataService {
 
   constructor(private http: Http) { }
 
-  getStreets(): Promise<Street[]> {
+  getStreetsPromise(): Promise<Street[]> {
     console.log(STREETS);
     return Promise.resolve(STREETS);
 
@@ -22,6 +22,18 @@ export class MapDataService {
     //            .then(response => response.json().data as Street[])
     //            .catch(this.handleError);
   }
+
+  getStreets(): Street[] {
+    console.log(STREETS);
+    return STREETS;
+
+    // For real service
+    // return this.http.get(this.streetsUrl)
+    //            .toPromise()
+    //            .then(response => response.json().data as Street[])
+    //            .catch(this.handleError);
+  }
+
 
 
   private handleError(error: any): Promise<any> {

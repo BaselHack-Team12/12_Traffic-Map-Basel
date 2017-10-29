@@ -18,7 +18,7 @@ export class MapBlockComponent implements OnInit {
   getStreets(): void {
     console.log("request ...");
 
-    this.mapDataService.getStreets().then(streets => this.streets = streets);
+    this.mapDataService.getStreetsPromise().then(streets => this.streets = streets);
   }
 
   ngOnInit() {
