@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.criterion.Projection;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
@@ -72,6 +73,33 @@ public class HibernateUtils {
                     .setProjection(Projections.id())
                     .uniqueResult();
         } finally {
+            session.close();
+        }
+    }
+
+    public int getCarCountForStreet(int streetid) {
+        Session session = null;
+        try {
+            session = sessionFactory.openSession();
+            return (Integer)session.createCriteria(cars.class)
+                    .setProjection(Projections.rowCount())
+                    .add(Restrictions.eq("id", streetid))
+                    .uniqueResult();
+        }
+        finally {
+            session.close();
+        }
+    }
+
+    public int getTotalCarCount() {
+        Session session = null;
+        try {
+            session = sessionFactory.openSession();
+            return (Integer)session.createCriteria(cars.class)
+                    .setProjection(Projections.rowCount())
+                    .uniqueResult();
+        }
+        finally {
             session.close();
         }
     }
