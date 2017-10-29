@@ -1,5 +1,7 @@
 package com.baselhack17.team12;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.hibernate.Session;
@@ -7,8 +9,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
-
-import java.util.List;
 
 /**
  * //TODO write here something nicer.
@@ -56,7 +56,6 @@ public class HibernateUtils {
         try {
             session = sessionFactory.openSession();
             return session.createCriteria(streets.class)
-                    .setProjection(Projections.id())
                     .list();
         }
         finally {
