@@ -26,6 +26,7 @@ public class streets {
     private Double density;
     private Double dangerId;
     private Integer speedingCarsCount;
+    private Integer totalCarsCount;
 
     @Id
     @Column(name = "id", unique = true)
@@ -117,6 +118,16 @@ public class streets {
         this.speedingCarsCount = count;
     }
 
+    @Basic
+    @Column(name = "totalCarsCount")
+    public Integer getTotalCarsCount() {
+        return totalCarsCount;
+    }
+
+    public void setTotalCarsCount(Integer totalCarsCount) {
+        this.totalCarsCount = totalCarsCount;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -130,11 +141,13 @@ public class streets {
                 Objects.equal(area, streets.area) &&
                 Objects.equal(density, streets.density) &&
                 Objects.equal(dangerId, streets.dangerId) &&
-                Objects.equal(speedingCarsCount, streets.speedingCarsCount);
+                Objects.equal(speedingCarsCount, streets.speedingCarsCount) &&
+                Objects.equal(totalCarsCount, streets.totalCarsCount);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(id, streetName, longitude, latitude, area, speedlimit, density, dangerId, speedingCarsCount);
+        return Objects.hashCode(id, streetName, longitude, latitude, area, speedlimit, density,
+                dangerId, speedingCarsCount, totalCarsCount);
     }
 }

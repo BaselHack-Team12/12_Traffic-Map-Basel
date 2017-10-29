@@ -9,15 +9,15 @@ import com.google.common.io.Resources;
 /**
  * //TODO write here something nicer.
  */
-public class DangerCalculator {
+public class TotalCountCalculator {
 
     public static void main(String[] args) {
         DAO dao = new DAO();
-        File speedingCarsPerStreet = new File(Resources.getResource("speedingCarsPerStreet.csv").getFile());
+        File totalCarsPerStreet = new File(Resources.getResource("totalCarsPerStreet.csv").getFile());
 
         try {
             String line;
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(speedingCarsPerStreet));
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(totalCarsPerStreet));
             while ((line = bufferedReader.readLine()) != null) {
                 String[] aLine = line.split(",");
                 String streetName = aLine[0];
@@ -29,7 +29,7 @@ public class DangerCalculator {
                 if (street == null) {
                     continue;
                 }
-                dao.updateSpeedingCarCount(street.getId(), Integer.parseInt(count));
+                dao.updateTotalCarsCount(street.getId(), Integer.parseInt(count));
             }
         } catch (Exception e) {
             e.printStackTrace();
