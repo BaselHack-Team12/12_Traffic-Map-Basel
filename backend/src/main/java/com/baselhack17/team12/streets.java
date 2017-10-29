@@ -89,12 +89,6 @@ public class streets {
     @Basic
     @Column(name = "density")
     public Double getDensity() {
-        if(density == null) {
-            Integer carCount = new HibernateUtils().getCarCountForStreet(id);
-            Integer totalCars = new HibernateUtils().getTotalCarCount();
-            density = (carCount / totalCars) * 100.0;
-            new HibernateUtils().persist(this);
-        }
         return density;
     }
 

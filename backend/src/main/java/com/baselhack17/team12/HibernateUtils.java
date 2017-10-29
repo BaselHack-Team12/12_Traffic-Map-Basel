@@ -77,13 +77,13 @@ public class HibernateUtils {
         }
     }
 
-    public int getCarCountForStreet(int streetid) {
+    public Long getCarCountForStreet(int streetid) {
         Session session = null;
         try {
             session = sessionFactory.openSession();
-            return (Integer)session.createCriteria(cars.class)
+            return (Long)session.createCriteria(cars.class)
                     .setProjection(Projections.rowCount())
-                    .add(Restrictions.eq("id", streetid))
+                    .add(Restrictions.eq("streetId", streetid))
                     .uniqueResult();
         }
         finally {
@@ -91,11 +91,11 @@ public class HibernateUtils {
         }
     }
 
-    public int getTotalCarCount() {
+    public Long getTotalCarCount() {
         Session session = null;
         try {
             session = sessionFactory.openSession();
-            return (Integer)session.createCriteria(cars.class)
+            return (Long)session.createCriteria(cars.class)
                     .setProjection(Projections.rowCount())
                     .uniqueResult();
         }
@@ -103,4 +103,39 @@ public class HibernateUtils {
             session.close();
         }
     }
+
+    public streets getStreet(int id) {
+        Session session = null;
+        try {
+            session = sessionFactory.openSession();
+            return (streets) session.createCriteria(streets.class)
+                    .add(Restrictions.eq("id", id))
+                    .uniqueResult();
+        }
+        finally {
+            session.close();
+        }
+    }
+
+    public streets updateStreet(int id, String speedlimit, String longitude, String latitude, String area) {
+        Session session = null;
+        try {
+            session = sessionFactory.openSession();
+            session.beginTransaction();
+            streets oldstreet = (streets) session.createCriteria(streets.class)
+                    .add(Restrictions.eq("id", id))
+                    .uniqueResult();
+            oldstreet.setSpeedlimit(Integer.parseInt(speedlimit));
+            oldstreet.setLatitude(Double.parseDouble(latitude));
+            oldstreet.setLongitude(Double.parseDouble(longitude));
+            oldstreet.setArea(area);
+            session.save(oldstreet);
+            session.getTransaction().commit();
+            return oldstreet;
+        }
+        finally {
+            session.close();
+        }
+    }
+
 }
