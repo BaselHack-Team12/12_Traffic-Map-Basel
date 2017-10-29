@@ -19,55 +19,47 @@ export class MainPageComponent implements OnInit {
   
     ngOnInit() {
 
-
       this.generateData();
-
-      // // give everything a chance to get loaded before starting the animation to reduce choppiness
-      // setTimeout(() => {
-      //   this.generateData();
-  
-      //   // change the data periodically
-      //   setInterval(() => this.generateData(), 3000);
-      // }, 1000);
-
-
 
       this.getStreets();
       console.log(this.streets);
     
-      // this.streets = [
-      //   { id: 11, name: 'etwasStrasse', dangerosity: 2, coordinates: ''},
-      //   { id: 12, name: 'andereStrasse', dangerosity: 3, coordinates: ''}
-      //   ];
-
-      //   this.chartData = this.streets;
-
-
       // max dangerosity
       let maxDangerosiy: number = 0;
 
-for (let street of this.streets) {
-  if (maxDangerosiy < street.dangerosity) maxDangerosiy = street.dangerosity
-}
-console.log('maxDangerosiy: ' +maxDangerosiy);
+      for (let street of this.streets) {
+        if (maxDangerosiy < street.dangerosity) maxDangerosiy = street.dangerosity
+      }
+      console.log('maxDangerosiy: ' +maxDangerosiy);
 
-      // transform
-/*
-0:"Index 0"
-1:93
-length:2
-*/
-this.chartData = [];
-for (let street of this.streets) {
-  console.log(street); 
-  this.chartData.push([
-    street.name,
-    street.dangerosity / maxDangerosiy * 100
-  ]);
-}
+      // Data formatting
+      /* following this example
+      0:"Index 0"
+      1:93
+      length:2
+      */
+      this.chartData = [];
+      for (let street of this.streets) {
+        console.log(street); 
+        this.chartData.push([
+          street.name,
+          street.dangerosity / maxDangerosiy * 100
+        ]);
+      }
+      console.log("formated streets");
+      console.log(this.chartData);
 
-console.log("formated streets");
-console.log(this.chartData);
+      // Data sorting
+      function compare(a,b) {
+        if (a[1] < b[1])
+          return 1;
+        if (a[1] > b[1])
+          return -1;
+        return 0;
+      }
+      console.log("sorted streets");
+      this.chartData.sort(compare);
+      console.log(this.chartData);
     }
   
     generateData() {
@@ -85,7 +77,7 @@ console.log(this.chartData);
       console.log("request ... from main page");
   
       //this.mapDataService.getStreetsPromise().then(streets => this.streets = streets);
-      this.streets = this.mapDataService.getStreets();
+      this.streets = this.mapDataService.getStreets(); // getting object without promise
     }
   
 }
