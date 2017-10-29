@@ -14,11 +14,11 @@ import org.hibernate.criterion.Restrictions;
  * //TODO write here something nicer.
  */
 @Transactional
-public class HibernateUtils {
+public class DAO {
 
     private final SessionFactory sessionFactory;
 
-    public HibernateUtils() {
+    public DAO() {
         Configuration configuration = new Configuration();
         configuration.configure();
 

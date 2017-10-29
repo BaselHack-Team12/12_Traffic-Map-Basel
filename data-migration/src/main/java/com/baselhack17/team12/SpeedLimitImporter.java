@@ -28,7 +28,7 @@ public class SpeedLimitImporter {
 
 
     public static void main(String[] args) throws ParserConfigurationException {
-        HibernateUtils utils = new HibernateUtils();
+        DAO utils = new DAO();
 
         ObjectReader listMapper = new ObjectMapper().readerFor(List.class);
         ObjectReader mapMapper = new ObjectMapper().readerFor(Map.class);

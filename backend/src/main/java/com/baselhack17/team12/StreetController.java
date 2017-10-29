@@ -15,12 +15,12 @@ public class StreetController {
 
     @RequestMapping(value = "/streets", method = RequestMethod.GET)
     public List<streets> getStreets() {
-        return new HibernateUtils().getStreets();
+        return new DAO().getStreets();
     }
 
     @RequestMapping(value = "streets/{id}", method = RequestMethod.GET)
     public streets getStreet(@PathVariable("id") int id) {
-        return new HibernateUtils().getStreet(id);
+        return new DAO().getStreet(id);
     }
 
 }
