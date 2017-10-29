@@ -1,0 +1,9 @@
+[submodule "API"]
+	path = API
+	url = https://github.com/BaselHack-Team12/API.git
+[submodule "MockUp-FrontEnd"]
+	path = MockUp-FrontEnd
+	url = https://github.com/BaselHack-Team12/MockUp-FrontEnd.git
+[submodule "mysql"]
+	path = mysql
+	url = https://github.com/BaselHack-Team12/mysql.git
