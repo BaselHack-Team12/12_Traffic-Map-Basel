@@ -48,7 +48,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.baselhack17.team12.Main</mainClass>
+                            <mainClass>com.baselhack17.team12.RadarDataDumper</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>

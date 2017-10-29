@@ -17,7 +17,6 @@ package com.baselhack17.team12;
 import static com.google.common.collect.Lists.newArrayList;
 
 import java.io.File;
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -27,11 +26,10 @@ import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 
 
-public class Main {
+public class RadarDataDumper {
 
     private static int carCount = 0;
     private static int streetCount = -1;
-    private static String lastStreetName = "";
 
     public static void main(String[] args) {
         HibernateUtils hibernateUtils = new HibernateUtils();
@@ -58,6 +56,7 @@ public class Main {
                     streetName = StringUtils.substringAfter(streetName, "-");
                 }
 
+                String lastStreetName = "";
                 if (!lastStreetName.equals(streetName)) {
                     ++streetCount;
                 }
