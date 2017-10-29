@@ -1,6 +1,6 @@
 # TrafficView
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.8.
+UI for the Basel traffic map project of team 12 for Basel Hack 2017.
 
 ## Setup 
 
@@ -12,6 +12,7 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 ## Other temp doc
 
+Generated with [Angular CLI].
 Run `ng generate component component-name` to generate a new component. 
 Run `ng build` to build the project. Use the `-prod` flag for a production build.
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
