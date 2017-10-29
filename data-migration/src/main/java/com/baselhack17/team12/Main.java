@@ -18,6 +18,7 @@ import static com.google.common.collect.Lists.newArrayList;
 
 import java.io.File;
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.apache.commons.io.FileUtils;
@@ -35,15 +36,18 @@ public class Main {
     public static void main(String[] args) {
         HibernateUtils hibernateUtils = new HibernateUtils();
 
-        String directoryPath = "/Users/ilgun/BaselHack2017/BaselHack/radardaten";
+        String directoryPath = args[0];
         File directory = new File(directoryPath);
 
         String[] extensions = new String[]{"txt"};
+
+        long startTime = System.currentTimeMillis();
 
         List<File> files = newArrayList(FileUtils.iterateFiles(directory, extensions, true));
 
         for (File file : files) {
             try {
+                long fileStartTime = System.currentTimeMillis();
                 List<String> lines = FileUtils.readLines(file);
 
                 String streetName = lines.get(2);
@@ -80,17 +84,29 @@ public class Main {
                     car.setId(carCount++);
                     car.setSpeed(speed);
                     car.setSize(length);
-                    car.setTimeStamp(new Date(timestamp.toDate().getTime()));
+                    car.setTimeStamp(new Timestamp(timestamp.getMillis()));
                     car.setStreetId(streetId);
-
-                    System.out.println("Car Id: " + car.getId() + "streetId: " + car.getStreetId());
                     hibernateUtils.persist(car);
+                    System.out.print(
+                            lines.indexOf(line)
+                                    +"/"+lines.size()
+                                    +" lines | "
+                                    +files.indexOf(file)
+                                    +"/"+files.size()
+                                    +" files | "
+                                    +"current elapsed time: "
+                                    + (fileStartTime - System.currentTimeMillis()) / 1000
+                                    + " | "
+                                    + "total elapsed time: "
+                                    + (startTime - System.currentTimeMillis()) / 1000
+                                    +"\r");
                 }
             } catch (Exception ex) {
                 System.out.println("Failed for file " + file.getName() + ": " + ex.getMessage());
             } finally {
-                System.out.println("Done.");
+                System.out.println("File complete.");
             }
         }
+        System.out.println("Done.");
     }
 }

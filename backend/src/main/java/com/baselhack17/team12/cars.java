@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.sql.Time;
+import java.sql.Timestamp;
 
 import com.google.common.base.Objects;
 
@@ -23,7 +25,7 @@ public class cars {
     private int streetId;
     private Double speed;
     private Double size;
-    private Date timeStamp;
+    private Timestamp timeStamp;
     private Integer direction;
 
     @Id
@@ -68,11 +70,11 @@ public class cars {
 
     @Basic
     @Column(name = "timeStamp")
-    public Date getTimeStamp() {
+    public Timestamp getTimeStamp() {
         return timeStamp;
     }
 
-    public void setTimeStamp(Date timeStamp) {
+    public void setTimeStamp(Timestamp timeStamp) {
         this.timeStamp = timeStamp;
     }
 

@@ -8,6 +8,8 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
+import java.util.List;
+
 /**
  * //TODO write here something nicer.
  */
@@ -47,6 +49,19 @@ public class HibernateUtils {
             return persist(street);
         }
 
+    }
+
+    public List<streets> getStreets() {
+        Session session = null;
+        try {
+            session = sessionFactory.openSession();
+            return session.createCriteria(streets.class)
+                    .setProjection(Projections.id())
+                    .list();
+        }
+        finally {
+            session.close();
+        }
     }
 
     private Object isStreetExist(String streetName) {
