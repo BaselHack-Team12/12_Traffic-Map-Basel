@@ -147,9 +147,9 @@ public class DAO {
             session = sessionFactory.openSession();
             session.beginTransaction();
             streets oldstreet = (streets) session.createCriteria(streets.class)
-                    .add(Restrictions.eq("id", id));
-//                    .uniqueResult();
-//            oldstreet.setTotalCarsCount(totalCarsCount);
+                    .add(Restrictions.eq("id", id))
+                    .uniqueResult();
+            oldstreet.setTotalCarsCount(totalCarsCount);
             session.save(oldstreet);
             session.getTransaction().commit();
             return oldstreet;
