@@ -112,6 +112,52 @@ public class DAO {
         }
     }
 
+    public streets getStreet(String streetName) {
+        Session session = null;
+        try {
+            session = sessionFactory.openSession();
+            return (streets) session.createCriteria(streets.class)
+                    .add(Restrictions.eq("streetName", streetName))
+                    .uniqueResult();
+        } finally {
+            session.close();
+        }
+    }
+
+    public streets updateSpeedingCarCount(int id, int speedingCarCount) {
+        Session session = null;
+        try {
+            session = sessionFactory.openSession();
+            session.beginTransaction();
+            streets oldstreet = (streets) session.createCriteria(streets.class)
+                    .add(Restrictions.eq("id", id))
+                    .uniqueResult();
+            oldstreet.setSpeedingCarsCount(speedingCarCount);
+            session.save(oldstreet);
+            session.getTransaction().commit();
+            return oldstreet;
+        } finally {
+            session.close();
+        }
+    }
+
+    public streets updateTotalCarsCount(int id, int totalCarsCount) {
+        Session session = null;
+        try {
+            session = sessionFactory.openSession();
+            session.beginTransaction();
+            streets oldstreet = (streets) session.createCriteria(streets.class)
+                    .add(Restrictions.eq("id", id))
+                    .uniqueResult();
+            oldstreet.setTotalCarsCount(totalCarsCount);
+            session.save(oldstreet);
+            session.getTransaction().commit();
+            return oldstreet;
+        } finally {
+            session.close();
+        }
+    }
+
     public streets updateStreet(int id, String speedlimit, String longitude, String latitude, String area) {
         Session session = null;
         try {
@@ -132,4 +178,36 @@ public class DAO {
         }
     }
 
+    public streets updateStreet(int id, Float dangerLevel) {
+        Session session = null;
+        try {
+            session = sessionFactory.openSession();
+            session.beginTransaction();
+            streets oldstreet = (streets) session.createCriteria(streets.class)
+                    .add(Restrictions.eq("id", id))
+                    .uniqueResult();
+            oldstreet.setDangerLevel(dangerLevel);
+            session.save(oldstreet);
+            session.getTransaction().commit();
+            return oldstreet;
+        } finally {
+            session.close();
+        }
+    }
+    public streets updateDensityForStreet(int id, Float density) {
+        Session session = null;
+        try {
+            session = sessionFactory.openSession();
+            session.beginTransaction();
+            streets oldstreet = (streets) session.createCriteria(streets.class)
+                    .add(Restrictions.eq("id", id))
+                    .uniqueResult();
+            oldstreet.setDensity(density);
+            session.save(oldstreet);
+            session.getTransaction().commit();
+            return oldstreet;
+        } finally {
+            session.close();
+        }
+    }
 }

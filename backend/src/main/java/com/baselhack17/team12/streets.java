@@ -23,8 +23,10 @@ public class streets {
     private double latitude;
     private String area;
     private double speedlimit;
-    private Double density;
-    private Double dangerId;
+    private Float density;
+    private Float dangerLevel;
+    private Integer speedingCarsCount;
+    private Integer totalCarsCount;
 
     @Id
     @Column(name = "id", unique = true)
@@ -88,22 +90,42 @@ public class streets {
 
     @Basic
     @Column(name = "density")
-    public Double getDensity() {
+    public Float getDensity() {
         return density;
     }
 
-    public void setDensity(Double density) {
+    public void setDensity(Float density) {
         this.density = density;
     }
 
     @Basic
-    @Column(name = "dangerId")
-    public Double getDangerId() {
-        return dangerId;
+    @Column(name = "dangerlevel")
+    public Float getDangerLevel() {
+        return dangerLevel;
     }
 
-    public void setDangerId(Double dangerId) {
-        this.dangerId = dangerId;
+    public void setDangerLevel(Float dangerLevel) {
+        this.dangerLevel = dangerLevel;
+    }
+
+    @Basic
+    @Column(name = "speedingCarsCount")
+    public Integer getSpeedingCarsCount() {
+        return speedingCarsCount;
+    }
+
+    public void setSpeedingCarsCount(Integer count) {
+        this.speedingCarsCount = count;
+    }
+
+    @Basic
+    @Column(name = "totalCarsCount")
+    public Integer getTotalCarsCount() {
+        return totalCarsCount;
+    }
+
+    public void setTotalCarsCount(Integer totalCarsCount) {
+        this.totalCarsCount = totalCarsCount;
     }
 
     @Override
@@ -118,11 +140,14 @@ public class streets {
                 Objects.equal(streetName, streets.streetName) &&
                 Objects.equal(area, streets.area) &&
                 Objects.equal(density, streets.density) &&
-                Objects.equal(dangerId, streets.dangerId);
+                Objects.equal(dangerLevel, streets.dangerLevel) &&
+                Objects.equal(speedingCarsCount, streets.speedingCarsCount) &&
+                Objects.equal(totalCarsCount, streets.totalCarsCount);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(id, streetName, longitude, latitude, area, speedlimit, density, dangerId);
+        return Objects.hashCode(id, streetName, longitude, latitude, area, speedlimit, density,
+                dangerLevel, speedingCarsCount, totalCarsCount);
     }
 }
