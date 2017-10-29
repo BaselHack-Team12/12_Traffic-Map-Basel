@@ -1,0 +1,3 @@
+SELECT streetName, count(*) FROM baselhack.cars, baselhack.streets
+WHERE streetId = baselhack.streets.id
+group by streetName
