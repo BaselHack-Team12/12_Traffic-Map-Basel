@@ -7,9 +7,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * //TODO write here something nicer
  */
 @SpringBootApplication
-public class GreatApplication {
+public class REST {
 
     public static void main(String[] args) {
-        SpringApplication.run(GreatApplication.class, args);
+        SpringApplication.run(REST.class, args);
     }
 }
