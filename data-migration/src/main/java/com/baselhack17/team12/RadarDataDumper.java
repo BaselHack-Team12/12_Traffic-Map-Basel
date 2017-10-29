@@ -32,7 +32,7 @@ public class RadarDataDumper {
     private static int streetCount = -1;
 
     public static void main(String[] args) {
-        HibernateUtils hibernateUtils = new HibernateUtils();
+        DAO DAO = new DAO();
 
         String directoryPath = args[0];
         File directory = new File(directoryPath);
@@ -60,7 +60,7 @@ public class RadarDataDumper {
                 if (!lastStreetName.equals(streetName)) {
                     ++streetCount;
                 }
-                int streetId = hibernateUtils.getOrCreateStreet(streetName, streetCount);
+                int streetId = DAO.getOrCreateStreet(streetName, streetCount);
 
                 lines = lines.subList(6, lines.size() - 1);
                 for (String line : lines) {
@@ -85,7 +85,7 @@ public class RadarDataDumper {
                     car.setSize(length);
                     car.setTimeStamp(new Timestamp(timestamp.getMillis()));
                     car.setStreetId(streetId);
-                    hibernateUtils.persist(car);
+                    DAO.persist(car);
                     System.out.print(
                             lines.indexOf(line)
                                     +"/"+lines.size()

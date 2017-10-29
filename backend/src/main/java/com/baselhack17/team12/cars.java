@@ -1,6 +1,6 @@
 package com.baselhack17.team12;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -8,8 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.sql.Time;
-import java.sql.Timestamp;
 
 import com.google.common.base.Objects;
 

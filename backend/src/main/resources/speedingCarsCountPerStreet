@@ -1,0 +1,5 @@
+SELECT streetName, count(*) FROM baselhack.cars, baselhack.streets
+WHERE streetId = baselhack.streets.id
+AND speed> speedlimit
+AND speedlimit NOT like 0
+group by streetName
