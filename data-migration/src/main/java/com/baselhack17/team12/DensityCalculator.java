@@ -14,5 +14,23 @@
  */
 package com.baselhack17.team12;
 
+import java.util.List;
+
 public class DensityCalculator {
+
+    public static void main(String[] args) {
+        DAO utils = new DAO();
+        List<streets> streets = utils.getStreets();
+        Long totalCarCount = utils.getTotalCarCount();
+        Float totalDensity = 0f;
+
+        for (streets street : streets) {
+            if(street.getTotalCarsCount() == null) continue;
+            Float density = (float) street.getTotalCarsCount() / totalCarCount * 100;
+            totalDensity += density;
+            utils.updateDensityForStreet(street.getId(), density);
+            System.out.println(street.getStreetName() + " : " + density);
+        }
+        System.out.println("Total: " + totalDensity);
+    }
 }
