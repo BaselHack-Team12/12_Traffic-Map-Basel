@@ -178,4 +178,36 @@ public class DAO {
         }
     }
 
+    public streets updateStreet(int id, Float dangerLevel) {
+        Session session = null;
+        try {
+            session = sessionFactory.openSession();
+            session.beginTransaction();
+            streets oldstreet = (streets) session.createCriteria(streets.class)
+                    .add(Restrictions.eq("id", id))
+                    .uniqueResult();
+            oldstreet.setDangerLevel(dangerLevel);
+            session.save(oldstreet);
+            session.getTransaction().commit();
+            return oldstreet;
+        } finally {
+            session.close();
+        }
+    }
+    public streets updateDensityForStreet(int id, Float density) {
+        Session session = null;
+        try {
+            session = sessionFactory.openSession();
+            session.beginTransaction();
+            streets oldstreet = (streets) session.createCriteria(streets.class)
+                    .add(Restrictions.eq("id", id))
+                    .uniqueResult();
+            oldstreet.setDensity(density);
+            session.save(oldstreet);
+            session.getTransaction().commit();
+            return oldstreet;
+        } finally {
+            session.close();
+        }
+    }
 }

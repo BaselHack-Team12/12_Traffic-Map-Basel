@@ -14,5 +14,26 @@
  */
 package com.baselhack17.team12;
 
+import java.util.List;
+
 public class DangerosityLevelCalculator {
+
+    public static void main(String[] args) {
+        DAO utils = new DAO();
+        List<streets> streets = utils.getStreets();
+
+        for (streets street : streets) {
+            if(street.getSpeedingCarsCount() == null || street.getTotalCarsCount() ==  null) {
+                System.out.println("here");
+                continue;
+            }
+            Float dangerLevel = (float) street.getSpeedingCarsCount() / street.getTotalCarsCount() * 100;
+            if (street.getSpeedingCarsCount().equals(street.getTotalCarsCount())) {
+                continue;
+            }
+            utils.updateStreet(street.getId(), dangerLevel);
+            System.out.println(street.getStreetName() + " : " + dangerLevel);
+        }
+    }
+
 }
